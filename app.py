@@ -200,7 +200,7 @@ def before_request():
 
 if __name__ == '__main__':
     print("Starting Vital Signs Detection Server...")
-    print("Server running on http://localhost:5000")
+    print("Server running on http://localhost:3000")
     print("\nEndpoints:")
     print("  GET  /                      - Web interface")
     print("  POST /api/process_frame     - Process video frame")
@@ -208,4 +208,4 @@ if __name__ == '__main__':
     print("  POST /api/calibrate_bp      - Calibrate blood pressure")
     print("  GET  /api/health            - Health check")
 
-    app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)
+    app.run(debug=True, host='0.0.0.0', port=3000, threaded=True)
