@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바이탈사인 검출 시스템 | Vital Signs Detection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>바이탈사인 검출 시스템</h1>
+            <p class="subtitle">Vital Signs Detection System</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Video Section -->
+            <div class="video-section">
+                <div class="video-container">
+                    <video id="webcam" autoplay playsinline></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                </div>
+
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">측정 시작</button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>측정 중지</button>
+                    <button id="resetBtn" class="btn btn-danger">초기화</button>
+                </div>
+
+                <div id="status" class="status-message">
+                    카메라 접근을 허용하고 '측정 시작' 버튼을 클릭하세요
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="vital-card">
+                    <div class="vital-icon">❤️</div>
+                    <div class="vital-info">
+                        <h3>심박수</h3>
+                        <div class="vital-value" id="heartRate">--</div>
+                        <div class="vital-unit">BPM</div>
+                        <div class="vital-status" id="hrStatus">대기 중</div>
+                    </div>
+                </div>
+
+                <div class="vital-card">
+                    <div class="vital-icon">💨</div>
+                    <div class="vital-info">
+                        <h3>호흡수</h3>
+                        <div class="vital-value" id="respiratoryRate">--</div>
+                        <div class="vital-unit">회/분</div>
+                        <div class="vital-status" id="rrStatus">대기 중</div>
+                    </div>
+                </div>
+
+                <div class="vital-card vital-card-wide">
+                    <div class="vital-icon">🩺</div>
+                    <div class="vital-info">
+                        <h3>혈압 (추정)</h3>
+                        <div class="bp-values">
+                            <div class="bp-item">
+                                <div class="bp-label">수축기</div>
+                                <div class="vital-value" id="systolic">--</div>
+                                <div class="vital-unit">mmHg</div>
+                            </div>
+                            <div class="bp-separator">/</div>
+                            <div class="bp-item">
+                                <div class="bp-label">이완기</div>
+                                <div class="vital-value" id="diastolic">--</div>
+                                <div class="vital-unit">mmHg</div>
+                            </div>
+                        </div>
+                        <div class="vital-status" id="bpStatus">대기 중</div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="info-section">
+                    <h3>측정 안내</h3>
+                    <ul>
+                        <li>조명이 밝은 곳에서 측정하세요</li>
+                        <li>얼굴이 화면 중앙에 오도록 위치하세요</li>
+                        <li>심박수 측정: 이마가 잘 보이도록 하세요</li>
+                        <li>호흡수 측정: 상체가 보이도록 하세요</li>
+                        <li>최소 10초 이상 측정해야 정확합니다</li>
+                        <li>혈압은 추정값으로 의료용으로 사용하지 마세요</li>
+                    </ul>
+                </div>
+
+                <!-- Calibration Section -->
+                <div class="calibration-section">
+                    <h3>혈압 보정 (선택사항)</h3>
+                    <p class="calibration-info">실제 측정한 혈압으로 보정하면 더 정확한 추정이 가능합니다</p>
+                    <div class="calibration-inputs">
+                        <input type="number" id="calibSystolic" placeholder="수축기 (예: 120)" min="80" max="200">
+                        <input type="number" id="calibDiastolic" placeholder="이완기 (예: 80)" min="50" max="120">
+                        <button id="calibrateBtn" class="btn btn-secondary">보정</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>⚠️ 이 시스템은 교육 및 데모 목적입니다. 의료 진단용으로 사용하지 마세요.</p>
+            <p>정확한 측정을 위해서는 의료 기기를 사용하세요.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
